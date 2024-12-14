@@ -1,7 +1,7 @@
 import uuid
 
-from ddd.domain.customers.models import Customer
-from ddd.domain.customers.repositories import CustomerRepository
+from ordering.domain.customers.model import Customer
+from ordering.domain.customers.repository import CustomerRepository
 
 class InMemoryCustomerRepository(CustomerRepository):
     def __init__(self):

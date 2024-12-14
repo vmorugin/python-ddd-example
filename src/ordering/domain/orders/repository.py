@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 
-from ddd.domain.orders.models import (
-    OrderID,
+from ordering.domain.orders.model import (
     Order,
+    OrderID,
 )
 
 

@@ -1,8 +1,8 @@
-from ddd.infrastructure.adapters.orders.repository import InMemoryOrderRepository
-from ddd.infrastructure.adapters.customers.repository import InMemoryCustomerRepository
-from ddd.domain.orders.service import OrderService
-from ddd.domain.customers.service import CustomerServiceAdapter
-from domain.orders.services import DiscountService
+from ordering.infrastructure.adapters.orders.repository import InMemoryOrderRepository
+from ordering.infrastructure.adapters.customers.repository import InMemoryCustomerRepository
+from ordering.domain.orders import OrderService
+from ordering.domain.customers.service import CustomerServiceAdapter
+from ordering.domain.orders import DiscountService
 from application.orders import OrderApplicationService
 from application.customers import CustomerApplicationService
 

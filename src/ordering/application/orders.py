@@ -1,14 +1,14 @@
-from ddd.domain.customers.models import (
+from ordering.domain.customers.interfaces import CustomerServiceInterface
+from ordering.domain.customers.model import (
     Customer,
     CustomerID,
 )
-from ddd.domain.orders.interfaces import OrderServiceInterface
-from ddd.domain.customers.interfaces import CustomerServiceInterface
-from ddd.domain.orders.models import (
+from ordering.domain.orders.interfaces import OrderServiceInterface
+from ordering.domain.orders.model import (
+    OrderID,
     Order,
     Customer as OrderCustomer,
     Product,
-    OrderID,
 )
 
 

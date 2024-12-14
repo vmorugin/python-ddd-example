@@ -1,10 +1,9 @@
-from ddd.domain.customers.interfaces import CustomerServiceInterface
-from ddd.domain.customers.models import (
+from ordering.domain.customers.interfaces import CustomerServiceInterface
+from ordering.domain.customers.model import (
     Customer,
     CustomerID,
 )
-from ddd.domain.customers.repositories import CustomerRepository
-
+from ordering.domain.customers.repository import CustomerRepository
 
 
 class CustomerService(CustomerServiceInterface):

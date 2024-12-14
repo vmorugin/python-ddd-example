@@ -6,6 +6,7 @@ from uuid import UUID
 
 CustomerID = t.NewType('CustomerID', UUID)
 
+
 @dataclass(kw_only=True, frozen=True)
 class Customer:
     id: CustomerID

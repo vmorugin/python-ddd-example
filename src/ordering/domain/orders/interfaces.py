@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from ddd.domain.orders.models import (
+from ordering.domain.orders.model import (
     Order,
     Product,
     Customer,

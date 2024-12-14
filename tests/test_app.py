@@ -1,11 +1,11 @@
-from ddd.domain.customers.models import Customer
-from ddd.domain.orders.models import Order
-from ddd.infrastructure.adapters.orders.repository import InMemoryOrderRepository
-from ddd.infrastructure.adapters.customers.repository import InMemoryCustomerRepository
-from ddd.domain.orders.service import OrderService
-from ddd.domain.customers.service import CustomerService
-from ddd.application.orders import OrderApplicationService
-from ddd.application.customers import CustomerApplicationService
+from ordering.domain.customers.model import Customer
+from ordering.domain.orders.model import Order
+from ordering.domain.orders.service import OrderService
+from ordering.infrastructure.adapters.orders.repository import InMemoryOrderRepository
+from ordering.infrastructure.adapters.customers.repository import InMemoryCustomerRepository
+from ordering.domain.customers.service import CustomerService
+from ordering.application.orders import OrderApplicationService
+from ordering.application.customers import CustomerApplicationService
 
 
 def test_app():

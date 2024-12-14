@@ -1,10 +1,10 @@
 import uuid
 
-from ddd.domain.orders.models import (
+from ordering.domain.orders.model import (
     Order,
     OrderID,
 )
-from ddd.domain.orders.repositories import OrderRepository
+from ordering.domain.orders.repository import OrderRepository
 
 class InMemoryOrderRepository(OrderRepository):
     def __init__(self):

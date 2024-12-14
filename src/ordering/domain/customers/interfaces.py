@@ -3,7 +3,7 @@ from abc import (
     abstractmethod,
 )
 
-from ddd.domain.customers.models import (
+from ordering.domain.customers.model import (
     Customer,
     CustomerID,
 )
