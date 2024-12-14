@@ -14,8 +14,12 @@ class OrderService(OrderServiceInterface):
     def get_order(self, order_id: int) -> Order:
         return self.order_repository.get_by_id(order_id)
 
-    def create_order(self, order_id: int, customer: Customer, products: list[Product]):
-        order = Order(id=order_id, customer=customer, products=products)
+    def create_order(self, customer: Customer, products: list[Product]):
+        order = Order(
+            id=self.order_repository.next_id(),
+            customer=customer,
+            products=products,
+        )
         order.calculate_total()
         self.order_repository.save(order)
         return order

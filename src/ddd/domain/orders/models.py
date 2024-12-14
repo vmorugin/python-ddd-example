@@ -1,18 +1,22 @@
 from dataclasses import dataclass
+import typing as t
+from uuid import UUID
+
+OrderID = t.NewType('OrderID', UUID)
 
 @dataclass(kw_only=True, frozen=True)
 class Customer:
-    id: int
+    id: str
 
 @dataclass(kw_only=True, frozen=True)
 class Product:
-    id: int
+    id: str
     name: str
     price: float
 
 @dataclass(kw_only=True)
 class Order:
-    id: int
+    id: OrderID
     customer: Customer
     products: list[Product]
     total: float = 0.0

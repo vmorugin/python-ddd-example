@@ -1,19 +1,13 @@
+import typing as t
 from dataclasses import (
     dataclass,
-    field,
 )
+from uuid import UUID
 
-@dataclass(kw_only=True, frozen=True)
-class Order:
-    id: int
-
+CustomerID = t.NewType('CustomerID', UUID)
 
 @dataclass(kw_only=True, frozen=True)
 class Customer:
-    id: int
+    id: CustomerID
     name: str
     email: str
-    orders: list[Order] = field(default_factory=list)
-
-    def add_order(self, order: Order):
-        self.orders.append(order)

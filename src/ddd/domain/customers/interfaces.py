@@ -1,20 +1,19 @@
-from abc import ABC, abstractmethod
+from abc import (
+    ABC,
+    abstractmethod,
+)
 
 from ddd.domain.customers.models import (
-    Order,
     Customer,
+    CustomerID,
 )
 
 
 class CustomerServiceInterface(ABC):
     @abstractmethod
-    def get_customer(self, customer_id: int) -> Customer:
+    def get_customer(self, customer_id: CustomerID) -> Customer:
         ...
 
     @abstractmethod
-    def create_customer(self, customer_id: int, name: str, email: str) -> Customer:
+    def create_customer(self, name: str, email: str) -> Customer:
         ...
-
-    @abstractmethod
-    def associate_order(self, customer_id: int, order: Order):
-        pass
