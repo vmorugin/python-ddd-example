@@ -15,5 +15,5 @@ class CustomerServiceInterface(ABC):
         ...
 
     @abstractmethod
-    def create_customer(self, name: str, email: str) -> Customer:
+    def create_customer(self, name: str, email: str) -> CustomerID:
         ...

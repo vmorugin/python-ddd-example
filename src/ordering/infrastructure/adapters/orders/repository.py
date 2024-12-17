@@ -1,5 +1,3 @@
-import uuid
-
 from ordering.domain.orders.model import (
     Order,
     OrderID,
@@ -11,7 +9,7 @@ class InMemoryOrderRepository(OrderRepository):
         self.orders = {}
 
     def next_id(self) -> OrderID:
-        return OrderID(uuid.uuid4())
+        return OrderID.generate()
 
     def save(self, order):
         self.orders[order.id] = order

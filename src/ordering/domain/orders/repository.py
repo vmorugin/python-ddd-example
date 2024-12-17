@@ -12,9 +12,9 @@ class OrderRepository(ABC):
         ...
 
     @abstractmethod
-    def save(self, order: Order):
+    def get_by_id(self, order_id: OrderID):
         pass
 
     @abstractmethod
-    def get_by_id(self, order_id: OrderID):
+    def save(self, order: Order):
         pass

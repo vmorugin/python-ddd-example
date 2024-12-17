@@ -1,48 +1,41 @@
-from ordering.domain.customers.interfaces import CustomerServiceInterface
-from ordering.domain.customers.model import (
-    Customer,
-    CustomerID,
+from ordering.domain.orders.interfaces import (
+    OrderServiceInterface,
+    ICustomerService,
+    IProductsService,
 )
-from ordering.domain.orders.interfaces import OrderServiceInterface
 from ordering.domain.orders.model import (
     OrderID,
     Order,
-    Customer as OrderCustomer,
-    Product,
 )
+from ordering.domain.orders.repository import OrderRepository
 
 
-class OrderApplicationService:
-    def __init__(self, order_service: OrderServiceInterface, customer_service: CustomerServiceInterface):
-        self.order_service = order_service
+class OrderApplicationService(OrderServiceInterface):
+    def __init__(
+            self,
+            order_repository: OrderRepository,
+            customer_service: ICustomerService,
+            products_service: IProductsService,
+    ):
+        self.order_repository = order_repository
         self.customer_service = customer_service
+        self.product_service = products_service
 
     def get_order(self, order_id: OrderID) -> Order:
-        return self.order_service.get_order(order_id)
+        return self.order_repository.get_by_id(order_id)
 
-    def create_order(self, customer_id: CustomerID, product_list: list[dict]) -> OrderID:
+    def create_order(self, customer_id: str, product_list: list[dict]) -> OrderID:
         customer = self.customer_service.get_customer(customer_id)
-        order = self.order_service.create_order(
-            customer=Translator.customer_to_order_customer(customer),
-            products=Translator.order_products_from_list_dict(product_list)
+        product = self.product_service.get_products(product_list)
+        order = Order(
+            id=self.order_repository.next_id(),
+            customer=customer,
+            products=product,
         )
+        self.order_repository.save(order)
         return order.id
 
-    def apply_discount_to_order(self, order_id: OrderID, discount_percentage: float):
-        return self.order_service.apply_discount(order_id, discount_percentage)
-
-
-class Translator:
-    @classmethod
-    def customer_to_order_customer(cls, customer: Customer) -> OrderCustomer:
-        return OrderCustomer(id=str(customer.id))
-
-    @classmethod
-    def order_products_from_list_dict(cls, product_list: list[dict]) -> list[Product]:
-        return [
-                Product(
-                    id=product['id'],
-                    price=product['price'],
-                    name=product['name'],
-                ) for product in product_list
-            ]
+    def apply_discount(self, order_id: OrderID, discount_percentage: float):
+        order = self.order_repository.get_by_id(order_id)
+        order.apply_discount(discount_percentage)
+        self.order_repository.save(order)
